@@ -6,4 +6,5 @@ pipeline {
                 bat 'echo deu certo'
             }
         }
+    }
 }
