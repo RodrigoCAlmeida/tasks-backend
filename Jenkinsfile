@@ -52,6 +52,14 @@ pipeline {
                 
             }
         }
+        stage ('Functional Test'){
+            steps {
+                dir('functional-test') {
+                    git credentialsId: 'github_login', url: 'https://github.com/RodrigoCAlmeida/tasks-function-tests'
+                    bat 'mvn test'
+                }
+            }
+        }
     }
 }
 
