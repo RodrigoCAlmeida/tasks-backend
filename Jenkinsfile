@@ -52,28 +52,28 @@ pipeline {
                 
             }
         }
-        stage ('Functional Test'){
-            steps {
-                dir('functional-test') {
-                    git credentialsId: 'github_login', url: 'https://github.com/RodrigoCAlmeida/tasks-function-tests'
-                    bat 'mvn test'
-                }
-            }
-        }
+        // stage ('Functional Test'){
+        //     steps {
+        //         dir('functional-test') {
+        //             git credentialsId: 'github_login', url: 'https://github.com/RodrigoCAlmeida/tasks-function-tests'
+        //             bat 'mvn test'
+        //         }
+        //     }
+        // }
         stage ('Deploy Prod'){
              steps {
                 bat 'docker-compose build'
                 bat 'docker-compose up -d'
              }
         }
-        stage ('Health Check'){
-            steps{
-                sleep(30)
-                dir('Functional-test'){
-                    bat 'mvn verify -Dskip.surefire.tests'
-                }
-            }
-        }
+        // stage ('Health Check'){
+        //     steps{
+        //         sleep(30)
+        //         dir('Functional-test'){
+        //             bat 'mvn verify -Dskip.surefire.tests'
+        //         }
+        //     }
+        // }
     }
     post {
         always {
